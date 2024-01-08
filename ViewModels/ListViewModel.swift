@@ -51,6 +51,7 @@ class ListViewModel: ObservableObject {
 //            items[index] = item.updateCompletion()
 //        }
         
+        // check if the given item is in the items list or not, if yes then change completion to true or false
         if let index = items.firstIndex(where: { $0.id == item.id }) {
             items[index] = item.updateCompletion()
         }
