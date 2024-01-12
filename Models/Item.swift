@@ -22,3 +22,10 @@ struct Item: Identifiable, Codable {
         return Item(id: id, title: title, isCompleted: !isCompleted)
     }
 }
+
+struct Category: Identifiable, Codable {
+    var id: String
+    let title: String
+    let items: [Item]
+    
+}

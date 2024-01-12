@@ -41,18 +41,32 @@ struct ListView: View {
 
 extension ListView {
     private var itemList: some View {
-        List{
-            ForEach(listViewModel.items) { item in
-                ListRowView(item: item)
-                    .onTapGesture {
-                        withAnimation(.linear) {
-                            listViewModel.updateItem(item: item)
-                        }
+            List{
+                ForEach(0..<2) { num in
+                    Section {
+                        Text("item")
+                    } header: {
+                        Text("Header")
                     }
+
+                }
+                Section {
+                    ForEach(listViewModel.items) { item in
+                        ListRowView(item: item)
+                            .onTapGesture {
+                                withAnimation(.linear) {
+                                    listViewModel.updateItem(item: item)
+                                }
+                            }
+                    }
+                    .onDelete(perform: listViewModel.deleteItem)
+                    .onMove(perform: listViewModel.moveItem)
+                } header: {
+                    Text("Header")
+                }
+
+                
             }
-            .onDelete(perform: listViewModel.deleteItem)
-            .onMove(perform: listViewModel.moveItem)
-        }
-        .listStyle(.plain)
+            .listStyle(.plain)
     }
 }
